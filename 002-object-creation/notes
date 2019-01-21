@@ -1,0 +1,70 @@
+004 - Creating Objects with Functions
+Slide01
+-------
+Generate objects using a function
+
+function userCreator(name, score) {
+  const newUser = {};
+  newUser.name = name;
+  newUser.increment = function() {
+    newUser.score++;
+  }
+  return newUser;
+}
+
+const user1 = userCreator('Phil', 4);
+const user2 = userCreator('Julia', 5);
+user1.increment();
+
+
+003 - Object.create
+Slide01
+-------
+const user3 = Object.create(null);
+user3.name = 'eva';
+user3.increment = function() {
+  user3.score++;
+}
+
+Our code is getting repetitive, we're breaking our DRY principle
+And suppose we have millions of users
+
+What could we do?
+
+
+002 - Object dot Notations
+
+Slide01
+-------
+Creating user2 user 'dot notation'
+
+const user2 = {}; // create an empty object
+user2.name = 'julia'; //assign properties to that object
+user2.score - 5;
+user2.increment = function() {
+  user2.score++;
+}
+
+
+
+001 - Creating an Object
+Slide01
+-------
+Objects - store functions with their associated data!
+
+const user1 = {
+  name: 'Phill',
+  score: 4,
+  increment: function() {
+    user1.score++;
+  }
+}
+user1.increment(); //user1.core => 4
+
+This is the principle of encapsulation
+
+Let's keep creating our objects
+
+Slide02
+-------
+What alternative techniques do we have for creating objects?
