@@ -1,0 +1,8 @@
+002 - this Keyword Scoping Issues
+Slide01
+-------
+What if we want to organize our code inside  
+
+001 - Calling Prototype Methods
+-Setiap execution context memiliki 'this'
+-Dalam method, 'this' merujuk pada di sebelah kiri dari notasi dot (.)

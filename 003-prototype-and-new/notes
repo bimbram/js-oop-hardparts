@@ -1,1 +1,147 @@
+007 - Review of new
+-this in global memory is called the 'window' object (in browser) or the 'global' (in node)
+-all functions are function-object combo
+
+Slide01
+-------
+What if we want to organize our code inside one of our shared functions - perhaps by defining a new inner function
+
+function UserCreator(name, score) {
+  this.name = name;
+  this.score = score;
+}
+
+UserCreator.prototype.increment = function() {
+  function add1() {
+    this.score++;
+  }
+  add1();
+}
+
+userCreator.prototype.login = function() {
+  console.log('login');
+}
+
+const user1 = new UserCreator('Eva', 9);
+
+user1.increment();
+
+
+006 - new Keyword & Share Functions with prototype
+-Explaining the code line by line
+
+Slide01
+-------
+function UserCreator(name, score) {
+  this.name = name;
+  this.score = score;
+}
+
+UserCreator.prototype.increment = function () {
+  this.score++;
+}
+
+UserCreator.prototype.login = function () {
+  console.log('login');
+}
+
+const user1 = new UserCreator('Eva', 9);
+
+user1.increment()
+
+
+
+005 - Functions are Objects & Functions
+Slide01
+-------
+Interlude - functions are both objects and functions
+
+function multiplyBy2(num) {
+  return num*2;
+}
+
+multiplyBy2.stored = 5
+multiplyBy2(3) // 6
+
+multiplyBy2.stored // 5
+multiplyBy2.prototype // {}
+
+We could use the fact that all functions have a default property on their object version, 'prototype', which is itself an object-to replace our functionStore object
+
+
+004 - new & this Keywords
+Slide01
+-------
+Introducing the keyword that automates the hard work: new
+
+When we call the constructor function with the new in front we automate 2 things:
+1. Create a new user object
+2. Return the new user object
+
+But not we need to adjust how we write the body of userCreator. How can we:
+-Refer to the auto-created object?
+-Know where to put our single copies of function
+
+003 - Prototype Chain
+-Explaining the code line by line
+
+002 - Prototype Walkthrough
+-Explaining the code line by line
+-The placeholder in our function is called 'parameter' while the value being passed is called argument
+
+
 001 - Avoid Duplication with Prototype
+-The goal of OOP is to bundle our data with the relevant functionality
+
+Slide01
+-------
+Problems:
+Each time we create a new user we make space in our computer's memory for all our data and functions. But our functions are just copies.
+
+Is there a better way?
+
+Benefits:
+It's simple and easy to reason about!
+
+Slide02
+-------
+Store the increment function in just one object and have the interpreter, if it doesn't find the function on user1, look up to that object to check if it's there
+
+How to make this link>
+
+Slide03
+-------
+Using the prototype chain
+
+const functionStore = {
+  increment: function(){this.score++;},
+  login: function(){'You're loggedin'}
+}
+
+const user1 = {
+  name: 'Phil',
+  score: 4
+}
+
+user1.name // name is a property of user1 object
+user1.increment // Error! increment is not!
+
+Link user1 and functionStore so the interpreter, on not finding .increment, makes sure to check up in functionStore where it would find it
+
+Slide04
+-------
+function userCreator(name, score) {
+  const newUser = Object.create(userFunctionStore);
+  newUser.name = name;
+  newUser.score = score;
+  return newUser;
+};
+
+const userFunctionStore = {
+  increment: function() {this.score++;},
+  login: function() {console.log('You're loggedin);}
+};
+
+const user1 = userCreator('Phil', 4);
+const user2 - userCreator('Julia', 5);
+user1.increment();
