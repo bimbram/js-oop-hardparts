@@ -1,7 +1,103 @@
-002 - this Keyword Scoping Issues
+005 -  Recap of the class Keyword
 Slide01
 -------
-What if we want to organize our code inside  
+JavaScript uses this proto link to give objects, functions and arrays a bunch of bonus functionality. All objects by default have __proto__
+
+const obj = {
+  num: 3
+}
+
+obj.num // 3
+obj.hasOwnProperty('num') // ? where's this method?
+Object.prototype // {hasOwnProperty}
+
+-With Object.create we override the default __proto__ reference to Object.prototype and replace with functionStore
+-But functionStore is an object so it has a __proto__ reference to Object.prototype - we just intercede the chain
+
+
+004 - ES6 class Keyword
+Slide01
+-------
+We're writing our shared methods separately from out object 'constructor' itself (off in the User.prototype object)
+
+Slide02
+-------
+The class 'syntactic sugar'
+
+class UserCreator {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+  increment() {
+    this.score++;
+  }
+  login() {
+    console.log('login');
+  }
+}
+
+const user1 = new UserCreator('Eva', 9);
+
+user1.increment();
+
+
+003 - Solving Scope with Arrow Functions
+-The 'this' in a arrow function will refer to the 'this' wherever it was defined
+-Explaining the code one by one
+-Lexically static context means where i was born determined something about me when I was called
+
+
+002 - this Keyword Scoping Issues
+-The 'this' in the function add() method in the slide01 will refer to the global object
+-The 'this' in a method, unfortunately will refer to the global object
+-The simple solution is using the arrow function (see slide02)
+
+Slide01
+-------
+What if we want to organize our code inside one of our shared functions - perhaps by defining a new inner function
+
+function UserCreator(name, score) {
+  this.name = score;
+  this.score = score;
+}
+
+UserCreator.prototype.increment = function() {
+  function add1() {
+    this.score++;
+  }
+  // const add1 = function() {this.score++}
+    console.log('login')
+}
+
+UserCreator.prototype.login = function() {
+  console.log('login');
+}
+
+const user1 = new UserCreator('Eva', 9)
+
+user1.increment();
+
+Slide02
+-------
+We need to introduce arrow functions - which bind 'this' lexically
+
+function UserCreator(name, score) {
+  this.name = name;
+  this.score = score;
+}
+
+UserCreator.prototype.increment = function() {
+  const add1 = () => {this.score++;}
+}
+
+UserCreator.prototype.login = function() {
+  console.log('login');
+}
+
+const user1 = new UserCreator('Eva', 9)
+
+user1.increment();
 
 001 - Calling Prototype Methods
 -Setiap execution context memiliki 'this'
