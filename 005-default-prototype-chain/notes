@@ -1,0 +1,26 @@
+003 - Pair Programming OOJS
+-challenge: http://csbin.io/oop
+-
+
+002 - Function.prototype and Array.prototype
+-There is also the 'Function' object built in to the JS
+
+Slide01
+-------
+Arrays and functions are also objects so they get access to all the functions in Object.prototype but also more goodies
+
+function multiplyBy2(num) {
+  return num*2;
+}
+
+multiplyBy2.toString() // Where is this method?
+
+Function.prototype //{ toString FUNCTION, call: FUNCTION, bind: FUNCTION}
+
+multiplyBy2.hasOwnProperty('score') // Where's the function?
+
+Function.prototype.__proto__ // Object.prototype { hasOwnProperty: FUNCTION}
+
+
+001 - Objects default __proto__
+-The JS 'Object' is a function (constructor). That is why it has a .prototype property on it so we can do something like Object.create
