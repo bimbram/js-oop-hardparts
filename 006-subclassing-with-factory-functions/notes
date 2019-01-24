@@ -1,0 +1,66 @@
+007 - Call and Apply
+-Explaining the code line by line
+
+
+006 - Subclass Review
+Slide01
+-------
+Interlude - We have another way of running a function that allow us to control the assignment of this
+
+const obj = {
+  num: 3,
+  increment: function() {
+    this.name++;
+  }
+}
+
+const otherObj = {
+  num: 10
+}
+
+obj.increment(); // obj.num now 4
+
+obj.increment.call(otherObj) // otherObj.num now 11
+// obj.increment.apply(otherObj)
+
+this always refer to the left of the dot on whith the function (method) is being called, unless we override that running the function using .call() or .apply() which lets us set the value of this inside of the increment function
+
+
+005 - Prototype Lookup
+-Explaining the solution2 line by line
+
+004 - Creating an object with a Sub-Factory Function
+-Explaining the solution2 line by line
+
+003 - Create a Sub-Factory Function
+-Explaining the solution2 line by line
+
+002 - Create object with Factory Function
+-OOP is about having a more specific version of the masterclass
+-Explaining the solution2 line by line
+
+Slide01
+-------
+see folder, solution 2
+
+Slide02
+-------
+see folder, solution 3
+
+Slide03
+-------
+see folder, solution 4
+
+
+
+001 -  Intro to Subclassing and Inheritance
+-Subclassing is the creation of a more specific version of an instance of a class and grabbing the previously done work for that specific version
+
+Slide01
+-------
+A core aspect of an OOP approach is inheritance - passing knowledge down
+
+Note the bond between user, moderator and upgradedUser
+
+Slide02
+-------
